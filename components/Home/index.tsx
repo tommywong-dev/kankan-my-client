@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 
-import Header from './Header.component'
-import Post from './Post.component'
-import Buttons from './Buttons.component'
-import Footer from './Footer.component'
+import Header from './Header'
+import Post from './Post'
+import Buttons from './Buttons'
+import Footer from './Footer'
 
 const Home = ({username, description}) => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Buttons.module.css';
+import styles from '../../styles/Buttons.module.css';
 
 const Buttons = () => {
   const links = [

@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import Home from '../components/Home.component';
+import Meta from '../components/Core/Meta';
+import Home from '../components/Home';
 
 export default function Index() {
   const title: string = 'Mifasol Malaysia | Haze';
@@ -8,11 +8,7 @@ export default function Index() {
 
   return (
     <>
-      <Head>
-        <title>{title}</title>
-        <link rel="icon" href="/logo.png" />
-      </Head>
-
+      <Meta />
       <Home username={username} description={ description }/>
     </>
   )

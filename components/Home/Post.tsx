@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import ShuffleIcon from '@material-ui/icons/Shuffle';
-import styles from '../styles/Post.module.css'
+import styles from '../../styles/Post.module.css'
 
 const Post = () => {
   const [post, setPost] = useState(null);

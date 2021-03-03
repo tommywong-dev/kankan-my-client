@@ -1,6 +1,6 @@
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar'
-import styles from '../styles/Header.module.css'
+import styles from '../../styles/Header.module.css'
 
 const Header = ({ username, description }) => {
   return (

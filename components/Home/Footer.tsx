@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../styles/Footer.module.css'
+import styles from '../../styles/Footer.module.css'
 
 const Footer = () => {
   return (
@@ -7,7 +7,7 @@ const Footer = () => {
       by
       <a
         className={styles.link}
-        href="https://www.instagram.com/jnwong00/?hl=en"
+        href="mailto:tommywong.dev@gmail.com"
         target="_blank"
       >
         Haze
