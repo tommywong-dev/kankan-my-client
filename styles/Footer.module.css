@@ -1,0 +1,18 @@
+.footer {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  font-size: 18px;
+  color: rgba(100, 100, 100);
+}
+
+.link {
+  padding-left: 4px;
+}
+
+.link:hover {
+  color:cornflowerblue;
+  text-decoration: 2px cornflowerblue underline;
+}

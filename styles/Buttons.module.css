@@ -1,0 +1,38 @@
+.link {
+  cursor:auto;
+}
+
+.button {
+  max-width: 800px;
+  min-width: 300px;
+  padding: 1rem;
+  margin: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 2rem;
+  outline: none;
+
+  letter-spacing: 2px;
+
+  position: relative;
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.3);
+
+}
+
+.button:hover {
+  transition: all 0.75s ease-out;
+  background: white;
+  box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.2);
+  /* background: linear-gradient(to top right, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.2)); */
+}
+
+.icon {
+  position: absolute;
+  left: 5%;
+}

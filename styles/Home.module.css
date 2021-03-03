@@ -1,0 +1,19 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top right, lightblue, rgb(214, 238, 247));
+}
+
+.main {
+  max-width: 350px;
+  background: rgba(255, 255, 255, 0.3);
+  padding: 1rem;
+  margin: 3rem;
+  position: relative;
+  border-radius: 1rem;
+  border: 0.5px solid rgba(255, 255, 255, 0.5)
+}
