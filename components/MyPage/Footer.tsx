@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/Footer.module.css'
+import styles from '../../styles/MyPage/Footer.module.css'
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
         href="mailto:tommywong.dev@gmail.com"
         target="_blank"
       >
-        Haze
+        Kankan
       </a>
     </footer>
   )
