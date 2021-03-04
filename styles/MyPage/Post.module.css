@@ -15,8 +15,14 @@
   padding: 0;
 
   background: #FAFAFA;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 40px 20px -15px rgba(0, 0, 0, 0.15),
+              0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  outline: none;
+}
+.card:active {
+  transition: all 0.2s ease;
+  transform: scale(0.96);
 }
 
 .card_image {
@@ -37,10 +43,4 @@
 .card_content > h2 {
   margin-bottom: 0;
   font-size: 16px;
-}
-
-
-.card:active {
-  transition: all 0.2s ease;
-  transform: scale(0.96);
 }
