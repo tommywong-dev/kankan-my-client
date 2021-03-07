@@ -1,0 +1,25 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e0f2f1;
+}
+
+.one_link {
+  font-size: 60px;
+}
+
+.link {
+  color: #009688;
+}
+.link:hover {
+  transition: all 0.3s ease-in;
+  border-bottom: 16px solid #009688
+}
+
+.get_started {
+  padding: 2rem;
+  border-radius: 1rem;
+}

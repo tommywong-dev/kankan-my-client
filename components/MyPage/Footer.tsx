@@ -1,17 +1,16 @@
 import React from 'react'
+import Link from 'next/link';
 import styles from '../../styles/MyPage/Footer.module.css'
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
       by
-      <a
-        className={styles.link}
-        href="mailto:tommywong.dev@gmail.com"
-        target="_blank"
-      >
-        Kankan
-      </a>
+      <Link href="/">
+        <a className={styles.link}>
+          Kankan
+        </a>
+      </Link>
     </footer>
   )
 }
