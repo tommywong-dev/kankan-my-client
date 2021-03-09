@@ -23,7 +23,7 @@ const NavBar = () => {
         </li>
         <li>
           <Link href="/signup">
-            <Button className={classes.signup} variant="contained">
+            <Button color="primary" className={classes.signup} variant="contained">
               Free Sign Up
             </Button>
           </Link>

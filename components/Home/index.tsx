@@ -23,7 +23,7 @@ const HomeComponent = () => {
         </p>
 
         <Link href="/signup">
-          <Button variant="contained" className={customs.get_started}>
+          <Button color="primary" variant="contained" className={customs.get_started}>
             Sign up for free
           </Button>
         </Link>
