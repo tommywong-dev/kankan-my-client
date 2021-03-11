@@ -2,73 +2,44 @@ import React, { useState } from 'react'
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-import OrLogin from './OrLogin';
+import OrSignup from './OrSignup';
 
 const Form = () => {
   const classes = useStyles();
 
-  const baseURL = 'kankan.my/';
-
-  const [email, setEmail] = useState('');
   const [siteName, setSiteName] = useState('');
   const [password, setPassword] = useState('');
-  const [cPassword, setCPassword] = useState('');
 
   const handleChange = (e: any, type: string) => {
     e.preventDefault();
     const val: string = e.target.value;
 
     switch (type) {
-      case 'email':
-        setEmail(val);
-        break;
       case 'site_name':
-        (val.substring(0, 10) !== baseURL) ? setSiteName(baseURL) : setSiteName(val);
+        setSiteName(val);
         break;
       case 'password':
         setPassword(val);
-        break;
-      case 'c_password':
-        setCPassword(val);
         break;
       default:
         break;
     }
   }
 
-  const handleFocus = (e: any) => {
-    e.preventDefault();
-    if (!siteName) return setSiteName(baseURL);
-  }
-
-  const handleBlur = (e: any) => {
-    e.preventDefault();
-    if (siteName === baseURL) setSiteName('');
-  }
-
   const handleSignup = (e: any) => {
     e.preventDefault();
-    if (password !== cPassword) return console.log('oh no');
 
-    const form = { email, siteName, password, cPassword };
+    const form = { siteName, password };
     console.log('form:', form);
   }
 
   return (
     <form className={classes.root} onSubmit={handleSignup}>
       <TextField
-        type="email"
-        label="Email"
-        value={email}
-        onChange={e => handleChange(e, 'email')}
-      />
-      <TextField
         type="text"
         label="Site Name"
         value={siteName}
         onChange={e => handleChange(e, 'site_name')}
-        onFocus={e => handleFocus(e)}
-        onBlur={e => handleBlur(e)}
       />
       <TextField
         type="password"
@@ -76,15 +47,10 @@ const Form = () => {
         value={password}
         onChange={e => handleChange(e, 'password')}
       />
-      <TextField
-        type="password"
-        label="Confirm Password"
-        value={cPassword}
-        onChange={e => handleChange(e, 'c_password')}
-      />
-      <Button type="submit" color="primary" variant="contained">Sign Up</Button>
+      
+      <Button type="submit" color="primary" variant="contained">Log In</Button>
 
-      <OrLogin />
+      <OrSignup />
     </form>
   )
 }

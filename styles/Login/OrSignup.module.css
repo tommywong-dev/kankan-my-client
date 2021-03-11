@@ -1,0 +1,18 @@
+.or {
+  border-top: 1px solid #AAA;
+  text-align: center;
+  font-size: 16px;
+}
+.or > span {
+  color: #AAA;
+  background: #FAFAFA;
+  padding: 0 1rem;
+  text-transform: lowercase;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.or > p {
+  margin-top: 2rem;
+  letter-spacing: 2px;
+  color: #009688
+}

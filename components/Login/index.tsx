@@ -1,11 +1,16 @@
 import React from 'react'
 
-import NotFound from '../Core/NotFound';
+import Header from './Header';
+import Form from './Form';
+import styles from '../../styles/Login/index.module.css';
 
 const LoginComponent = () => {
   return (
-    <div>
-      <NotFound />
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <Header />
+        <Form />
+      </main>
     </div>
   )
 }
