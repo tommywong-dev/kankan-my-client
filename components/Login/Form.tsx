@@ -46,8 +46,15 @@ const Form = () => {
   const handleLogin = (e: any) => {
     e.preventDefault();
 
-    // find user by email
-    const user = users.forEach((user: any) => {
+    // TODO: log user in
+    if (userIsValid()) return alert('Correct credentials!')
+    // if none users have valid condition, then throw error
+    return alert('Incorrect email or password')
+  }
+
+  // check if user is valid with credentials
+  const userIsValid = () => {
+    return users.forEach((user: any) => {
       const valid = (user.val().email === email && bcrypt.compareSync(password, user.val().password));
       if (valid) {
         setEmail('');
@@ -55,11 +62,6 @@ const Form = () => {
         return true
       }
     })
-
-    // TODO: log user in
-    if (user) return alert('Correct credentials!')
-    // if none users have valid condition, then throw error
-    return alert('Incorrect email or password')
   }
 
   return (
