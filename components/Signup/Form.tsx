@@ -1,19 +1,34 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
+import bcrypt from 'bcryptjs';
 
+import db from '../../services/db';
 import OrLogin from './OrLogin';
 
 const Form = () => {
-  const classes = useStyles();
-
-  const baseURL = 'kankan.my/';
-
+  const baseURL = 'kankan.my/'; // url constant
+  const classes = useStyles(); // styles
+  // hooks
   const [email, setEmail] = useState('');
   const [siteName, setSiteName] = useState('');
   const [password, setPassword] = useState('');
   const [cPassword, setCPassword] = useState('');
+  const [users, setUsers] = useState(null);
 
+  useEffect(() => {
+    getUsers()
+    return () => db.getAll().off('value')
+  }, [])
+
+  // retrieve users from db
+  const getUsers = async () => {
+    db.getAll().on('value', snapshot => {
+      setUsers(snapshot)
+    });
+  }
+
+  // handle user input
   const handleChange = (e: any, type: string) => {
     e.preventDefault();
     const val: string = e.target.value;
@@ -36,22 +51,61 @@ const Form = () => {
     }
   }
 
+  // when user focuses sitename input
   const handleFocus = (e: any) => {
     e.preventDefault();
     if (!siteName) return setSiteName(baseURL);
   }
-
+  // when user leaves sitename input
   const handleBlur = (e: any) => {
     e.preventDefault();
     if (siteName === baseURL) setSiteName('');
   }
 
-  const handleSignup = (e: any) => {
+  // handle signing up
+  const handleSignup = async (e: any) => {
     e.preventDefault();
-    if (password !== cPassword) return console.log('oh no');
+    if (password !== cPassword) return alert('Password and Confirm Password does not match')
 
-    const form = { email, siteName, password, cPassword };
-    console.log('form:', form);
+    // if everything is fine then create a new user
+    if (!similarUsers()) {
+      createUser()
+      clearInputs()
+      // TODO: log user in
+      alert('user created')
+    }
+  }
+
+  // find similar user by email and site name
+  const similarUsers = () => {
+    return users.forEach((user: any) => {
+      const hasSimilarEmail = user.val().email === email;
+      const hasSimilarSiteName = user.val().siteName === siteName;
+
+      if (hasSimilarEmail) {
+        alert('Email has been used by other person')
+        return true
+      } else if (hasSimilarSiteName) {
+        alert('Site name has been used by other person')
+        return true
+      }
+    })
+  }
+
+  const createUser = () => {
+    // take out the base url constant
+    const site_name = siteName.substring(10);
+    // hash password
+    const hash_password = bcrypt.hashSync(password, 10);
+    const newUser = { email, site_name, password: hash_password };
+    db.create(newUser)
+  }
+
+  const clearInputs = () => {
+    setEmail('')
+    setSiteName('')
+    setPassword('')
+    setCPassword('')
   }
 
   return (
