@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import bcrypt from 'bcryptjs';
+import { connect } from 'react-redux'
 
+import { login } from '../../redux/actions/authActions';
 import db from '../../services/db';
 import OrSignup from './OrSignup';
 
-const Form = () => {
+const Form = ({ login }) => {
   const classes = useStyles(); // styles
   // hooks
   const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState('');
   const [users, setUsers] = useState(null);
+  const router = useRouter();
   
   useEffect(() => {
     getUsers()
@@ -47,7 +51,10 @@ const Form = () => {
     e.preventDefault();
 
     // TODO: log user in
-    if (userIsValid()) return alert('Correct credentials!')
+    if (userIsValid()) {
+      login({ email, siteName: 'hello' })
+      // return router.push('/dashboard')
+    }
     // if none users have valid condition, then throw error
     return alert('Incorrect email or password')
   }
@@ -110,4 +117,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }),
 );
 
-export default Form
+export default connect(
+  null,
+  { login }
+)(Form)

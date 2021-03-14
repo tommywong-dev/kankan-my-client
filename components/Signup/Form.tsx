@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router';
 import { TextField, Button } from '@material-ui/core';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import bcrypt from 'bcryptjs';
+import { connect } from 'react-redux'
 
+import { login } from '../../redux/actions/authActions';
 import db from '../../services/db';
 import OrLogin from './OrLogin';
 
-const Form = () => {
+const Form = ({ login }) => {
   const baseURL = 'kankan.my/'; // url constant
   const classes = useStyles(); // styles
   // hooks
@@ -15,7 +18,8 @@ const Form = () => {
   const [password, setPassword] = useState('');
   const [cPassword, setCPassword] = useState('');
   const [users, setUsers] = useState(null);
-
+  const router = useRouter()
+  
   useEffect(() => {
     getUsers()
     return () => db.getAll().off('value')
@@ -69,10 +73,11 @@ const Form = () => {
 
     // if everything is fine then create a new user
     if (!similarUsers()) {
-      createUser()
+      const user = await createUser()
       clearInputs()
       // TODO: log user in
-      alert('user created')
+      login({user})
+      // await router.push('/dashboard')
     }
   }
 
@@ -92,13 +97,15 @@ const Form = () => {
     })
   }
 
-  const createUser = () => {
+  const createUser = async () => {
     // take out the base url constant
     const site_name = siteName.substring(10);
     // hash password
     const hash_password = bcrypt.hashSync(password, 10);
     const newUser = { email, site_name, password: hash_password };
-    db.create(newUser)
+
+    await db.create(newUser)
+    return newUser
   }
 
   const clearInputs = () => {
@@ -167,4 +174,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }),
 );
 
-export default Form
+export default connect(
+  null,
+  { login }
+)(Form)
